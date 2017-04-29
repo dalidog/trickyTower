@@ -1,6 +1,7 @@
 package trickyTower;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,8 +17,9 @@ void setup(){
 frame.add(panel);
 frame.setSize(500, 800);
 frame.show();
+frame.addMouseMotionListener(panel);
 }
-void draw(){
+void draw(Graphics g){
 	
 }
 }
