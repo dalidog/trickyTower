@@ -5,13 +5,14 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener, MouseMotionListener {
-	Platform p = new Platform(20, 200, Color.gray);
+public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+	static Platform p = new Platform(20, 200, Color.gray);
 	Block b = new Block(50, 50, Color.BLUE);
 	Timer t = new Timer(1000 / 60, this);
 public GamePanel(){
@@ -27,7 +28,7 @@ public GamePanel(){
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		b.update();
 		repaint();
 	}
 	@Override
@@ -39,5 +40,32 @@ public GamePanel(){
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		b.X=e.getX();
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		b.setXfalling(b.X);
+		b.setFalling(true);
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

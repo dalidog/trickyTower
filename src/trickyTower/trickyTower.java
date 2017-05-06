@@ -18,6 +18,7 @@ frame.add(panel);
 frame.setSize(500, 800);
 frame.show();
 frame.addMouseMotionListener(panel);
+frame.addMouseListener(panel);
 }
 void draw(Graphics g){
 	
