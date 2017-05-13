@@ -27,13 +27,13 @@ public GamePanel(){
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
 		b.update();
 		repaint();
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 		
 	}
 	@Override

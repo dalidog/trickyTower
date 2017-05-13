@@ -14,6 +14,7 @@ public class Block {
 	boolean isFalling = false;
 	int gravity = 1;
 	int Xfalling;
+	boolean moveWithPlatform=false;
 	public Block(int X, int Y, Color color){
 		this.X=X;
 		this.Y=Y;
@@ -25,16 +26,29 @@ void setup(){
 	Y=mouseY;
 	}
 void update(){
+
+//	if(X>platform.X && X<platform.X + 200 && Y>  platform.Y - 100 && Y< platform.Y + 200){
+//		Yvel = 0;
+//		gravity = 0;
+//	moveWithPlatform = true;
+//	}
+//	if(moveWithPlatform){
+//		X=platform.X;
+//	}
+
+}
+void draw(Graphics g){
 	if(X>platform.X && X<platform.X + 200 && Y>  platform.Y - 100 && Y< platform.Y + 200){
 		Yvel = 0;
 		gravity = 0;
+	moveWithPlatform = true;
+	}
+	if(moveWithPlatform){
 		X=platform.X;
 	}
-}
-void draw(Graphics g){
 
 	if(isFalling){
-		X=Xfalling;
+		//X=Xfalling;
 		Y=Y+Yvel;
 		Yvel = Yvel +gravity;
 	}
@@ -44,7 +58,7 @@ void draw(Graphics g){
 
 	g.setColor(color);
 	g.fillRect(X, Y, 100, 100);
-	
+
 }
 public boolean isFalling() {
 	return isFalling;
