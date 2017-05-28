@@ -1,26 +1,30 @@
 package trickyTower;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class trickyTower {
+public class TrickyTower {
+	static final int frameW = 500;
+	static final int frameH = 800;
 	JFrame frame = new JFrame();
 	GamePanel panel = new GamePanel();
-public static void main(String[] args) {
-	trickyTower TT = new trickyTower();
-	TT.setup();
-}
-void setup(){
-frame.add(panel);
-frame.setSize(500, 800);
-frame.show();
-frame.addMouseMotionListener(panel);
-frame.addMouseListener(panel);
-}
-void draw(Graphics g){
-	
-}
+
+	public static void main(String[] args) {
+		TrickyTower TT = new TrickyTower();
+		TT.setup();
+	}
+
+	void setup() {
+		frame.add(panel);
+		frame.setSize(frameW, frameH);
+		frame.show();
+		frame.addMouseMotionListener(panel);
+		frame.addMouseListener(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	void draw(Graphics g) {
+
+	}
 }

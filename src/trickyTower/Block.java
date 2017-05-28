@@ -40,7 +40,7 @@ public class Block {
 			Yvel = 0;
 			gravity = 0;
 			moveWithPlatform = true;
-		
+
 			ArrayBlocks.add(new Block(X, Y, color));
 		}
 		if (moveWithPlatform) {
@@ -65,6 +65,9 @@ public class Block {
 		}
 		if (X > 400) {
 			X = 400;
+		}
+		if (isFalling == false) {
+			Block b2 = new Block(mouseX, mouseY, Color.ORANGE);
 		}
 
 		g.setColor(color);

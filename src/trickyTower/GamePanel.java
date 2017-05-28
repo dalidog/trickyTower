@@ -25,20 +25,14 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		g.fillRect(0, 0, 500, 800);
 		p.draw(g);
 		b.draw(g);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (b.isFalling() == false) {
-			blockcollided();
-		}
+
 		b.update();
 		repaint();
-	}
-
-	public void blockcollided() {
-		b = new Block(50, 50, Color.ORANGE);
-		System.out.println(" hi ");
 	}
 
 	@Override
