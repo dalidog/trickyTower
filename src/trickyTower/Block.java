@@ -2,10 +2,8 @@ package trickyTower;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 public class Block {
-	ArrayList<Block> ArrayBlocks = new ArrayList();
 	int X;
 	int Y;
 	int mouseX;
@@ -41,7 +39,6 @@ public class Block {
 			gravity = 0;
 			moveWithPlatform = true;
 
-			ArrayBlocks.add(new Block(X, Y, color));
 		}
 		if (moveWithPlatform) {
 
@@ -66,9 +63,6 @@ public class Block {
 		if (X > 400) {
 			X = 400;
 		}
-		if (isFalling == false) {
-			Block b2 = new Block(mouseX, mouseY, Color.ORANGE);
-		}
 
 		g.setColor(color);
 		g.fillRect(X, Y, 100, 100);
@@ -89,5 +83,10 @@ public class Block {
 
 	public void setXfalling(int xfalling) {
 		Xfalling = xfalling;
+	}
+
+	public void setX(int x) {
+		// TODO Auto-generated method stub
+		this.X = x;
 	}
 }

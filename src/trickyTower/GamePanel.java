@@ -7,16 +7,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+	ArrayList<Block> ArrayBlocks = new ArrayList<Block>();
 	static Platform p = new Platform(20, 200, Color.gray);
 	Block b = new Block(50, 50, Color.BLUE);
 	Timer t = new Timer(1000 / 60, this);
 
 	public GamePanel() {
+		ArrayBlocks.add(b);
 		t.start();
 	}
 
@@ -25,7 +28,12 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		g.fillRect(0, 0, 500, 800);
 		p.draw(g);
 		b.draw(g);
-
+		if (ArrayBlocks.get(0).isFalling) {
+			ArrayBlocks.add(new Block(10, 50, Color.CYAN));
+		}
+		for (int i = 0; i < ArrayBlocks.size(); i++) {
+			ArrayBlocks.get(i).draw(g);
+		}
 	}
 
 	@Override
@@ -43,7 +51,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		b.X = e.getX();
+		for (int i = 0; i < ArrayBlocks.size(); i++) {
+			ArrayBlocks.get(i).setX(e.getX());
+		}
 	}
 
 	@Override
