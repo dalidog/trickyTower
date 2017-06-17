@@ -15,8 +15,9 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	ArrayList<Block> ArrayBlocks = new ArrayList<Block>();
 	static Platform p = new Platform(20, 200, Color.gray);
-	Block b = new Block(50, 50, Color.BLUE);
+	Block b = new Block(50, 50, 100, 100, Color.BLUE);
 	Timer t = new Timer(1000 / 60, this);
+	int counter = 0;
 
 	public GamePanel() {
 		ArrayBlocks.add(b);
@@ -28,12 +29,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		g.fillRect(0, 0, 500, 800);
 		p.draw(g);
 		b.draw(g);
-		if (ArrayBlocks.get(0).isFalling) {
-			ArrayBlocks.add(new Block(10, 50, Color.CYAN));
+		if (ArrayBlocks.get(counter).isFalling) {
+			counter +=1;
+			ArrayBlocks.add(new Block(50, b.mouseY, 80, 80, Color.CYAN));
 		}
-		for (int i = 0; i < ArrayBlocks.size(); i++) {
-			ArrayBlocks.get(i).draw(g);
-		}
+		//for (int i = 0; i < ArrayBlocks.size(); i++) {
+			ArrayBlocks.get(counter).draw(g);
+		//}
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class Platform {
 		g.setColor(color);
 		g.fillRect(X, Y, width, length);
 		X = X + speed;
-		if (X + width >= TrickyTower.frameW) {
+		if (X + width >= trickyTower.frameW) {
 			speed = -speed;
 		} else if (X <= 0) {
 			speed = -speed;

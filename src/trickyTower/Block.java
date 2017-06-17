@@ -16,10 +16,15 @@ public class Block {
 	int Xfalling;
 	int difference;
 	boolean moveWithPlatform = false;
+	int width;
+	int height;
 
-	public Block(int X, int Y, Color color) {
+
+	public Block(int X, int Y,int width, int height, Color color) {
 		this.X = X;
 		this.Y = Y;
+		this.width=width;
+		this.height=height;
 		this.color = color;
 	}
 
@@ -65,10 +70,42 @@ public class Block {
 		}
 
 		g.setColor(color);
-		g.fillRect(X, Y, 100, 100);
-
-	}
-
+		g.fillRect(X, Y, width, height);
+	
+	if (X > 400) {
+		X = 400;
+	}}
+//	void newblock(){
+//		if (X + 50 > platform.X && X < platform.X + 200 && Y > platform.Y - 100 && Y < platform.Y + 200) {
+//			Yvel = 0;
+//			gravity = 0;
+//			moveWithPlatform = true;
+//
+//		}
+//		if (moveWithPlatform) {
+//
+//			X = platform.X + difference;
+//
+//		}
+//
+//		if (isFalling) {
+//			Y = Y + Yvel;
+//			Yvel = Yvel + gravity;
+//
+//			if (platform.Y == Y + 89) {
+//				if (X > platform.X) {
+//					difference = X - platform.X;
+//				} else if (X <= platform.X) {
+//					difference = platform.X - X;
+//				}
+//
+//			}
+//
+//		}
+//		if (X > 400) {
+//			X = 400;
+//		}
+//	}
 	public boolean isFalling() {
 		return isFalling;
 	}

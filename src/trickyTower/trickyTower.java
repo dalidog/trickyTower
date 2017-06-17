@@ -4,14 +4,14 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-public class TrickyTower {
+public class trickyTower {
 	static final int frameW = 500;
 	static final int frameH = 800;
 	JFrame frame = new JFrame();
 	GamePanel panel = new GamePanel();
 
 	public static void main(String[] args) {
-		TrickyTower TT = new TrickyTower();
+		trickyTower TT = new trickyTower();
 		TT.setup();
 	}
 
