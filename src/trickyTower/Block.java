@@ -18,7 +18,8 @@ public class Block {
 	boolean moveWithPlatform = false;
 	int width;
 	int height;
-
+	boolean touchingPlatform= false;
+	
 
 	public Block(int X, int Y,int width, int height, Color color) {
 		this.X = X;
@@ -33,6 +34,9 @@ public class Block {
 		X = mouseX;
 		Y = mouseY;
 	}
+	
+	
+	
 
 	void update() {
 
@@ -48,7 +52,7 @@ public class Block {
 		if (moveWithPlatform) {
 
 			X = platform.X + difference;
-
+touchingPlatform = true;
 		}
 
 		if (isFalling) {
@@ -65,47 +69,19 @@ public class Block {
 			}
 
 		}
-		if (X > 400) {
+		if (X > 400) { //stops falling
 			X = 400;
+			
 		}
 
 		g.setColor(color);
 		g.fillRect(X, Y, width, height);
 	
-	if (X > 400) {
-		X = 400;
-	}}
-//	void newblock(){
-//		if (X + 50 > platform.X && X < platform.X + 200 && Y > platform.Y - 100 && Y < platform.Y + 200) {
-//			Yvel = 0;
-//			gravity = 0;
-//			moveWithPlatform = true;
-//
-//		}
-//		if (moveWithPlatform) {
-//
-//			X = platform.X + difference;
-//
-//		}
-//
-//		if (isFalling) {
-//			Y = Y + Yvel;
-//			Yvel = Yvel + gravity;
-//
-//			if (platform.Y == Y + 89) {
-//				if (X > platform.X) {
-//					difference = X - platform.X;
-//				} else if (X <= platform.X) {
-//					difference = platform.X - X;
-//				}
-//
-//			}
-//
-//		}
-//		if (X > 400) {
-//			X = 400;
-//		}
-//	}
+	
+	}
+	void newblock(){
+		
+}
 	public boolean isFalling() {
 		return isFalling;
 	}

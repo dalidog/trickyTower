@@ -19,10 +19,14 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 	Timer t = new Timer(1000 / 60, this);
 	int counter = 0;
+	int counter2 = 0;
 
 	public GamePanel() {
 		arrayBlocks.add(new Block(50, 50, 100, 100, Color.BLUE));
+		System.out.println("PEEEE");
+
 		t.start();
+
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -30,22 +34,35 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		p.draw(g);
 		drawBlocks(g);
 	}
-	public void drawBlocks(Graphics g){
+
+	public void drawBlocks(Graphics g) {
 		for (int i = 0; i < arrayBlocks.size(); i++) {
 			arrayBlocks.get(i).draw(g);
 		}
+		if (counter2 == 0) {
+
+			if (arrayBlocks.get(0).touchingPlatform) {
+				System.out.println(counter2);
+				arrayBlocks.add(new Block(50, 50, 50, 50, Color.CYAN));
+				arrayBlocks.get(0).touchingPlatform = false;
+				counter2++;
+			}
+
+		}
 	}
-public void drawBackground(Graphics g){
-	g.setColor(Color.pink);
-	g.fillRect(0, 0, 500, 800);
-}
+
+	public void drawBackground(Graphics g) {
+		g.setColor(Color.pink);
+		g.fillRect(0, 0, 500, 800);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-for (int i = 0; i < arrayBlocks.size(); i++) {
-	arrayBlocks.get(i).update();
-}
-repaint();
-		
+		for (int i = 0; i < arrayBlocks.size(); i++) {
+			arrayBlocks.get(i).update();
+		}
+		repaint();
+
 	}
 
 	@Override
@@ -70,11 +87,11 @@ repaint();
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		arrayBlocks.get(0).setXfalling(arrayBlocks.get(0).X);
-		arrayBlocks.get(0).setFalling(true);
-		
-		arrayBlocks.get(1).setXfalling(arrayBlocks.get(1).X);
-		arrayBlocks.get(1).setFalling(true);
+		arrayBlocks.get(counter2).setXfalling(arrayBlocks.get(counter2).X);
+		arrayBlocks.get(counter2).setFalling(true);
+
+		// arrayBlocks.get(1).setXfalling(arrayBlocks.get(1).X);
+		// arrayBlocks.get(1).setFalling(true);
 	}
 
 	@Override
