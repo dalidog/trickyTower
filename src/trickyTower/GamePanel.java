@@ -8,14 +8,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	ArrayList<Block> arrayBlocks = new ArrayList<Block>();
-	static Platform p = new Platform(20, 200, Color.gray);
+	Platform p = new Platform(200, 20, Color.gray);
 
 	Timer t = new Timer(1000 / 60, this);
 	int counter = 0;
@@ -23,7 +22,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 	public GamePanel() {
 		arrayBlocks.add(new Block(50, 50, 100, 100, Color.BLUE));
-		System.out.println("PEEEE");
 
 		t.start();
 
@@ -39,16 +37,14 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		for (int i = 0; i < arrayBlocks.size(); i++) {
 			arrayBlocks.get(i).draw(g);
 		}
-		if (counter2 == 0) {
 
-			if (arrayBlocks.get(0).touchingPlatform) {
-				System.out.println(counter2);
-				arrayBlocks.add(new Block(50, 50, 50, 50, Color.CYAN));
-				arrayBlocks.get(0).touchingPlatform = false;
-				counter2++;
-			}
-
+		if (arrayBlocks.get(counter2).touchingPlatform) {
+			System.out.println(counter2);
+			arrayBlocks.add(new Block(50, 50, 50, 50, Color.CYAN));
+			arrayBlocks.get(counter2).touchingPlatform = false;
+			counter2++;
 		}
+
 	}
 
 	public void drawBackground(Graphics g) {
@@ -59,7 +55,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		for (int i = 0; i < arrayBlocks.size(); i++) {
-			arrayBlocks.get(i).update();
+			if (i > 0) {
+				arrayBlocks.get(i).blockcollision(arrayBlocks.get(i - 1));
+			} else {
+				arrayBlocks.get(i).iscollision(p);
+			}
+			arrayBlocks.get(i).update(p);
+
 		}
 		repaint();
 

@@ -7,7 +7,6 @@ public class Block {
 	int X;
 	int Y;
 	int mouseX;
-	static Platform platform = GamePanel.p;
 	int mouseY;
 	Color color;
 	int Yvel = 1;
@@ -18,14 +17,13 @@ public class Block {
 	boolean moveWithPlatform = false;
 	int width;
 	int height;
-	boolean touchingPlatform= false;
-	
+	boolean touchingPlatform = false;
 
-	public Block(int X, int Y,int width, int height, Color color) {
+	public Block(int X, int Y, int width, int height, Color color) {
 		this.X = X;
 		this.Y = Y;
-		this.width=width;
-		this.height=height;
+		this.width = width;
+		this.height = height;
 		this.color = color;
 	}
 
@@ -34,32 +32,19 @@ public class Block {
 		X = mouseX;
 		Y = mouseY;
 	}
-	
-	
-	
 
-	void update() {
-
-	}
-
-	void draw(Graphics g) {
-		if (X + 50 > platform.X && X < platform.X + 200 && Y > platform.Y - 100 && Y < platform.Y + 200) {
-			Yvel = 0;
-			gravity = 0;
-			moveWithPlatform = true;
-
-		}
+	void update(Platform platform) {
 		if (moveWithPlatform) {
 
 			X = platform.X + difference;
-touchingPlatform = true;
+			touchingPlatform = true;
 		}
 
 		if (isFalling) {
 			Y = Y + Yvel;
 			Yvel = Yvel + gravity;
 
-			if (platform.Y == Y + 89) {
+			if (Y - height > platform.Y) {
 				if (X > platform.X) {
 					difference = X - platform.X;
 				} else if (X <= platform.X) {
@@ -69,19 +54,19 @@ touchingPlatform = true;
 			}
 
 		}
-		if (X > 400) { //stops falling
+		if (X > 400) { // stops falling
 			X = 400;
-			
+
 		}
+	}
+
+	void draw(Graphics g) {
 
 		g.setColor(color);
 		g.fillRect(X, Y, width, height);
-	
-	
+
 	}
-	void newblock(){
-		
-}
+
 	public boolean isFalling() {
 		return isFalling;
 	}
@@ -101,5 +86,24 @@ touchingPlatform = true;
 	public void setX(int x) {
 		// TODO Auto-generated method stub
 		this.X = x;
+	}
+
+	public void iscollision(Platform platform) {
+		if (X + width > platform.X && X < platform.X + platform.width && Y > platform.Y - height
+				&& Y < platform.Y + platform.height) {
+			Yvel = 0;
+			gravity = 0;
+			moveWithPlatform = true;
+
+		}
+
+	}
+
+	public void blockcollision(Block b) {
+		if (X + width > b.X && X < b.X + b.width && Y > b.Y - height && Y < b.Y + b.height) {
+			Yvel = 0;
+			gravity = 0;
+			moveWithPlatform = true;
+		}
 	}
 }
