@@ -1,6 +1,7 @@
 package trickyTower;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -15,13 +17,14 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	ArrayList<Block> arrayBlocks = new ArrayList<Block>();
 	Platform p = new Platform(200, 20, Color.gray);
-
+		 int blockwidth = 100;
+		 int blockheight = 100;
 	Timer t = new Timer(1000 / 60, this);
 	int counter = 0;
 	int counter2 = 0;
 
 	public GamePanel() {
-		arrayBlocks.add(new Block(50, 50, 100, 100, Color.BLUE));
+		arrayBlocks.add(new Block(50, 50, blockwidth, blockheight, Color.BLUE));
 
 		t.start();
 
@@ -31,6 +34,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		drawBackground(g);
 		p.draw(g);
 		drawBlocks(g);
+		g.setFont(new Font("Impact" , Font.BOLD, 24));
+		g.drawString("Tricky Tower", 200, 25);
 	}
 
 	public void drawBlocks(Graphics g) {
@@ -40,9 +45,16 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 		if (arrayBlocks.get(counter2).touchingPlatform) {
 			System.out.println(counter2);
-			arrayBlocks.add(new Block(50, 50, 50, 50, Color.CYAN));
+			Random randomGenerator = new Random();
+			int red = randomGenerator.nextInt(256);
+			int green = randomGenerator.nextInt(256);
+			int blue = randomGenerator.nextInt(256);
+			Color randomcolor = new Color(red,green,blue);
+			arrayBlocks.add(new Block(50, 50,blockwidth, blockheight,randomcolor));
 			arrayBlocks.get(counter2).touchingPlatform = false;
 			counter2++;
+			blockwidth-=10;
+			blockheight-=10;
 		}
 
 	}
@@ -57,10 +69,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		for (int i = 0; i < arrayBlocks.size(); i++) {
 			if (i > 0) {
 				arrayBlocks.get(i).blockcollision(arrayBlocks.get(i - 1));
+				arrayBlocks.get(i).update(arrayBlocks.get(i-1));
 			} else {
 				arrayBlocks.get(i).iscollision(p);
+				arrayBlocks.get(i).update(p);
 			}
-			arrayBlocks.get(i).update(p);
+			
+			
 
 		}
 		repaint();

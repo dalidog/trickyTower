@@ -43,9 +43,12 @@ public class Block {
 		if (isFalling) {
 			Y = Y + Yvel;
 			Yvel = Yvel + gravity;
-
-			if (Y - height > platform.Y) {
+	System.out.println("Block"+X);
+				System.out.println(platform.X);
+			if (Y + height > platform.Y) {
+			
 				if (X > platform.X) {
+					
 					difference = X - platform.X;
 				} else if (X <= platform.X) {
 					difference = platform.X - X;
@@ -54,12 +57,34 @@ public class Block {
 			}
 
 		}
-		if (X > 400) { // stops falling
+		if (X > 400) { 
 			X = 400;
 
 		}
 	}
+	void update(Block block) {
+		if (moveWithPlatform) {
 
+			X = block.X + difference;
+			touchingPlatform = true;
+		}
+
+		if (isFalling) {
+			Y = Y + Yvel;
+			Yvel = Yvel + gravity;
+
+			if (Y + height > block.Y) {
+				if (X > block.X) {
+					difference = X - block.X;
+				} else if (X <= block.X) {
+					difference = block.X - X;
+				}
+
+			}
+
+		}
+		
+	}
 	void draw(Graphics g) {
 
 		g.setColor(color);
@@ -89,7 +114,7 @@ public class Block {
 	}
 
 	public void iscollision(Platform platform) {
-		if (X + width > platform.X && X < platform.X + platform.width && Y > platform.Y - height
+		if (X + width > platform.X && X + width < platform.X + platform.width && Y >= platform.Y - height-20
 				&& Y < platform.Y + platform.height) {
 			Yvel = 0;
 			gravity = 0;
