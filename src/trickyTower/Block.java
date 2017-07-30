@@ -43,8 +43,6 @@ public class Block {
 		if (isFalling) {
 			Y = Y + Yvel;
 			Yvel = Yvel + gravity;
-	System.out.println("Block"+X);
-				System.out.println(platform.X);
 			if (Y + height > platform.Y) {
 			
 				if (X > platform.X) {
@@ -66,6 +64,7 @@ public class Block {
 		if (moveWithPlatform) {
 
 			X = block.X + difference;
+			Y=block.Y-block.height+10;
 			touchingPlatform = true;
 		}
 
@@ -77,7 +76,7 @@ public class Block {
 				if (X > block.X) {
 					difference = X - block.X;
 				} else if (X <= block.X) {
-					difference = block.X - X;
+					difference =   X - block.X;
 				}
 
 			}
@@ -114,7 +113,10 @@ public class Block {
 	}
 
 	public void iscollision(Platform platform) {
-		if (X + width > platform.X && X + width < platform.X + platform.width && Y >= platform.Y - height-20
+		System.out.println( platform.X+ platform.width);
+		int num = X+width;
+		 System.out.println( "X" +num);
+		if (X + width > platform.X && X  < platform.X + platform.width && Y >= platform.Y - height-20
 				&& Y < platform.Y + platform.height) {
 			Yvel = 0;
 			gravity = 0;
