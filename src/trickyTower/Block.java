@@ -113,9 +113,7 @@ public class Block {
 	}
 
 	public void iscollision(Platform platform) {
-		System.out.println( platform.X+ platform.width);
 		int num = X+width;
-		 System.out.println( "X" +num);
 		if (X + width > platform.X && X  < platform.X + platform.width && Y >= platform.Y - height-20
 				&& Y < platform.Y + platform.height) {
 			Yvel = 0;

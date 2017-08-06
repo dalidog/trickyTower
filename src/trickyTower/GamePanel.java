@@ -36,6 +36,21 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		drawBlocks(g);
 		g.setFont(new Font("Impact" , Font.BOLD, 24));
 		g.drawString("Tricky Tower", 200, 25);
+		if(checkForEndState()==true){
+			drawEndState(g);
+		}
+		else if(checkForWin()==true){
+			drawWin(g);
+		}
+	}
+
+	private void drawWin(Graphics g) {
+		// TODO Auto-generated method stub
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, 500, 800);
+		g.setFont(new Font("Impact" , Font.BOLD, 30));
+		g.setColor(Color.BLACK);
+		g.drawString("You Win! You stacked "+ counter2 +" blocks!", 40, 100);
 	}
 
 	public void drawBlocks(Graphics g) {
@@ -58,10 +73,38 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		}
 
 	}
-
+	
+	public boolean checkForEndState(){
+		for (int i = 0; i < arrayBlocks.size(); i++) {
+			Block block=arrayBlocks.get(i);
+			if(block.Y>800){
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean checkForWin(){
+		for (int i = 0; i < arrayBlocks.size(); i++) {
+			Block block=arrayBlocks.get(i);
+			if(counter2 == 11){
+				return true;
+			}
+	}
+		return false;
+	
+	}
+	public void drawEndState(Graphics g){
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, 500, 800);
+			g.setFont(new Font("Impact" , Font.BOLD, 30));
+			g.setColor(Color.RED);
+			g.drawString("You Lose! You only stacked "+ counter2 +" blocks!", 40, 100);
+		}
+	
 	public void drawBackground(Graphics g) {
 		g.setColor(Color.pink);
 		g.fillRect(0, 0, 500, 800);
+		
 	}
 
 	@Override
@@ -78,6 +121,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 			
 
 		}
+		
 		repaint();
 
 	}
