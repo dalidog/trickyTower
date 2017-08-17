@@ -36,6 +36,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 		drawBlocks(g);
 		g.setFont(new Font("Impact" , Font.BOLD, 24));
 		g.drawString("Tricky Tower", 200, 25);
+		g.drawString("Move mouse to align block and click to drop.", 30, 250);
+		g.drawString( "Try to stack them all!", 150, 300);
 		if(checkForEndState()==true){
 			drawEndState(g);
 		}
